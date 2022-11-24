@@ -1,0 +1,91 @@
+/* Set the rem size */
+html {
+  font-size: 20px;
+}
+
+body {
+  /* A nice dark theme background colour */
+  background-color: #333333;
+  color: #EEF9F8;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  margin-top: 3rem;
+}
+
+h2 {
+  margin-top: 2rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+img {
+  margin-top: 2rem;
+  border-radius: 10px;
+}
+
+input {
+  display: block;
+}
+
+a {
+  color: white;
+  text-decoration: underline;
+}
+
+input[type="button"]{
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: auto;
+}
+
+/* center the page and add spacing on the sides */
+.page-container {
+  width: 80%;
+  display: block;
+  margin: auto;
+}
+
+.center-img {
+  display: block;
+  margin: auto;
+  max-width: 80%;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.pt-3{
+  padding-top: 3rem;
+}
+
+.code-example-source {
+  display: block;
+  border-radius: 10px;
+  background-color: #222222;
+}
+
+.code-example-display > * {
+  display: block;
+}
+
+code {
+  border-radius: 10px;
+  background-color: #222222;
+}
+
+/* Multiple lines */
+code.block {
+  display: block;
+  white-space: pre-wrap;
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    Why JavaScript frameworks are preferred over plain JavaScript and HTML
+  </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="page-container">
+    <div class="article-header">
+      <h1 class="center-text">
+        Why JavaScript frameworks are preferred over plain JavaScript and HTML
+      </h1>
+      <img src="img/html_react.png" class="center-img"></img>
+    </div>
+
+    <h2 class="center-text">Introduction: why should I care?</h2>
+
+    <p>
+      HTML is a web standard that was created in 1993, which was
+      <!-- Make sure to display something as a placeholder before the js loads-->
+      <span id="html-creation-date-display">a long time</span> ago, in the age when the web was completely different.
+      And I mean <em>completely</em>. Back then, there were only 15 million Internet users, compared to the <span
+        style="color:#f46262;">5 billion</span>
+      today.
+    </p>
+
+    <p>JavaScript, on the other hand, was created in <strong>just 10 days</strong>, 2 years after HTML's inception.
+      Because so much of
+      the web relies on its functionality, it is very hard to change its existing functionality and to address
+      the poor design choices. For example, <code>document.write()</code>, one of the functions that is taught to people
+      learning JavaScript, is discouraged even by the <a
+        href="https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#document.write()"> HTML spec</a>
+      itself!</p>
+    <img src="img/document_write_discouraged_by_mozilla.png" class="center-img" />
+    <p>Moreover, this function replaces all the contents of the webpage with the supplied HTML, which is hardly useful
+      if you want to modify a small piece of text.</p>
+    <input id="document-write-button" type="button" value="Run 'document.write()'"></input>
+    <p>Maybe it is time for us to move on from these standards?
+    </p>
+
+    <h2 class="center-text">Chapter 1: code reuse</h2>
+    <p>Most modern programming languages offer a way to reuse code via functions, classes or other similar constructs.
+      It would be great if there was a similar idea in HTML and JavaScript that would allow you to write some part of a
+      page and reuse it later, without rewriting much HTML or JavaScript. Consider the following code:
+    </p>
+    <code id="form-component-example-html-code" class="block code-example-display"></code>
+    <p>This code produces the following HTML:</p>
+    <div id="form-component-example-html" class="code-example-source">
+      <h3>Login</h3>
+      <form>
+        <label for="username">Your username:</label>
+        <input type="text" name="username" id="username-input"></input>
+        <label for="password">Your password:</label>
+        <input type="password" name="password" id="password-input"></input>
+        <input type="submit" value="Submit" id="form-submit"></input>
+      </form>
+    </div>
+
+    <p>Now I want to make a signup page, which has the same contents, but with a header saying "Signup" and not "Login".
+      Plain JavaScript and HTML encourage the programmers to duplicate the code and not reuse it - there is no built-in
+      construct to reuse DOM nodes in HTML. JavaScript frameworks like React, Vue and Svelte address this by allowing
+      users to define components. Components act similarly to functions, being able to take in properties and generate
+      DOM from a "template". These components also have some JavaScript associated with them, allowing some of the
+      reactive logic to be contained in the component.
+    </p>
+    <p>For example, in this case, it is possible to define a component <code>CredentialsForm</code> which takes in a
+      <code>header</code> parameter and inserts that text into the header. Then, the login and signup pages could be
+      defined as follows:
+    </p>
+    <code class="block">
+      &lt;CredentialsForm header="Login" /&gt;
+    </code>
+    <p>and</p>
+    <code class="block">
+      &lt;CredentialsForm header="Signup" /&gt;
+    </code>
+    <p>This also allows the application to be broken down into multiple chunks that can be worked on independently, as
+      opposed to writing complex modern pages in a single HTML file.</p>
+
+    <h2 class="center-text">Chapter 2: declarative display of text</h2>
+    <p>It is common for applications to want to change some text to reflect the value of some variable. For example, a
+      banking app might fetch the balance and want to display it on the page, keeping it updated as the user transfers
+      money to a different account. With plain JavaScript, every time the variable is updated, we need to remember to
+      select the corresponding DOM elements and set their values accordingly. JavaScript frameworks replace this
+      error-prone imperative approach with a declarative approach. For example, the following code in Svelte
+      automatically updates the displayed value when the variable is changed:</p>
+    <code class="block">
+      &lt;p&gt; Your balance is: {balance} pounds &lt;/p&gt;
+    </code>
+    <p>Compare this to a plain JavaScript implementation:</p>
+    <code class="block">
+      &lt;script&gt;
+      function updateBalance(newBalance){
+      balance = newBalance;
+      document.getElementById("balance").innerText = balance;
+      }
+      &lt;/script&gt;
+
+      &lt;p&gt; Your balance is: &lt;span id="balance"&gt;&lt;/span&gt; pounds &lt;/p&gt;
+    </code>
+    <p>And don't forget to call this function any time you are changing the variable!</p>
+
+    <p>There is also a related issue that modern JavaScript frameworks solve. Do you remember when I said that being
+      able to display arbitrary HTML on a webpage is not a good thing? This is because an attacker can easily execute
+      arbitrary JavaScript and do almost anything with the browser, such as stealing account information or logging
+      passwords. There are many ways of achieving this, such as by including
+      <code>&lt;script&gt;</code> tags or even tampering with <code>&lt;img&gt;</code> attributes. This attack is known
+      as Cross-Site Scripting, or XSS for short.
+    </p>
+    <p>It is hard to list all the possible cases that might be exploited and filter them manually using plain
+      JavaScript. Fortunately, most modern frameworks default to inserting the text literally, and not as HTML.</p>
+  </div>
+
+  <!-- Load the script -->
+  <script src="index.js"></script>
+</body>
+
+</html>
